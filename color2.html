@@ -1,0 +1,43 @@
+<html>
+<head>
+<style>
+body {
+  text-align: center;
+margin: 10% 20% 30% 0%;
+
+
+}
+</style>
+ </head>
+<body>
+  <p id="para">add text</p>
+  <button id="color" onclick="changeColor()" value ="0">CHANGE COLOR</button>
+<button onclick="myFunction()">ADD Color</button>
+
+<script>
+function changeColor() {
+  button = document.getElementById("color")
+	if (button.value == '0') {
+
+		document.body.style.color = "#ff6666";
+		button.value = '1';
+	}
+	else {
+				document.body.style.color = "#66a3ff";
+		button.value = '0';
+	}
+}
+
+var Colors = ["Yellow", "Orange", "White", "Black","Red","Blue"];
+document.getElementById("para").innerHTML = Colors;
+
+function myFunction() {
+  Colors.push("Blue");
+  document.getElementById("para").innerHTML = Colors;
+}
+
+
+
+</script>
+</body>
+</html>
