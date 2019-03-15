@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<style>
+body{
+    background-color:#ffffff;
+	text-align:center;
+}
+canvas{
+  border:0px;
+}
+
+button{
+
+  width: 8%;
+  padding: 1px;
+  border: none;
+  border-radius: 10px;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 20px;
+
+}
+script{
+  margin:5%;
+}
+</style>
+
+<body>
+
+
+
+  <canvas id="o" width="100" height="400"></canvas>
+  <button onclick="Loading()">Loading</button>
+  <button onclick="Unloading()">Unloading</button>
+  <button onclick="randombgcolor()"> Random Color</button>
+  <button onclick="reset()"> Rest</button>
+
+
+<script>
+
+
+
+function lineObjectC(startX, startY, finishX, finishY, bgColor, lineColor, context) {
+  this.startX = startX;
+  this.startY = startY;
+  this.finishX = finishX;
+  this.finishY = finishY;
+  this.context = context;
+  this.drawLine = function() {
+    this.context.beginPath();
+    this.context.moveTo(this.startX, this.startY);
+    this.context.lineTo(this.finishX, this.finishY);
+    this.context.strokeStyle = lineColor;
+    this.context.stroke();
+  }
+  this.eraseLine = function() {
+    this.context.beginPath();
+    this.context.moveTo(this.startX, this.startY);
+    this.context.lineTo(this.finishX, this.finishY);
+    this.context.strokeStyle = bgColor;
+    this.context.stroke();
+  }
+}
+
+
+
+
+var canvas = document.getElementById('o');
+var ctx = canvas.getContext('2d');
+
+var lines = [];
+
+
+
+
+function createLines(lines, context, startY) {
+  lines = lines;
+  ctx = context;
+  var startY =startY;
+  var height = context.canvas.height;
+  while (startY <= height) {
+    lines[startY] = new lineObjectC(0,startY,100,startY,'#ffffff', 'rgba(102, 204, 255)', ctx);
+    startY = startY + 1;
+  }
+  return lines
+}
+
+
+
+
+
+
+
+function Loading() {
+  Y = 0; howManyTimes = 400;
+  drawLines(Y);
+}
+
+function drawLines() {
+  lines[Y].drawLine();
+    Y++;
+    if( Y <= howManyTimes ){
+        setTimeout(drawLines,10);
+    }
+}
+
+function Unloading() {
+  Y = 0; howManyTimes =400;
+  eraseLines(Y);
+}
+
+function eraseLines() {
+  lines[Y].eraseLine();
+    Y++;
+    if( Y <= howManyTimes ){
+        setTimeout(eraseLines, 0);
+    }
+}
+
+
+function startScripts() {
+  createLines(lines, ctx, 0);
+}
+
+window.onload = startScripts();
+
+
+
+
+</script>
+
+<script>
+function reset() {
+  location.reload();
+}
+
+
+function randombgcolor() {
+    var x = Math.floor(Math.random() * 256);
+    var y = Math.floor(Math.random() * 256);
+    var z = Math.floor(Math.random() * 256);
+    var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+    document.body.style.background = bgColor;
+    }
+
+
+
+  </script>
+
+
+
+
+
+</body>
+</html>
