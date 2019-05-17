@@ -34,8 +34,8 @@ button:hover, .dropbtn:focus {
 }
 
 img{
-    min-height: 422px;
-    min-width: 750px;
+	width:100%;
+    height:auto;
     border-radius: 10px;
 }
 
