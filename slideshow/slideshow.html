@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body{
+  font-family:"Arial",sans-serif;
+  font-size:14px;
+  color:#fff;
+  background:#669;
+}
+
+a{
+  color:#fff;
+  text-decoration: none;
+}
+
+
+
+.container{
+  width:540px;
+  margin:40px auto;
+  overflow:auto;
+}
+
+.slider-inner{
+  width:500px;
+  height:300px;
+  position:relative;
+  overflow:hidden;
+  float:left;
+  padding:3px;
+
+}
+
+.slider-inner img{
+  display:none;
+  width:500px;
+  height:300px;
+}
+
+.slider-inner img.active{
+  display:inline-block;
+}
+
+.prev,.next{
+  float:left;
+  margin-top:130px;
+  cursor: pointer;
+}
+
+.prev{
+  position:relative;
+  margin-right:-60px;
+  z-index:100;
+}
+
+.next{
+  position:relative;
+  margin-left:-60px;
+  z-index:100;
+}
+button{
+  width: 8%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  margin: 2px 46%;
+  opacity: 0.85;
+  font-size: 12px;
+  text-align: center; 
+}
+    </style>
+    <script type="text/javascript" src="jquery-3.3.1.min.js">
+    </script>
+
+
+<script>
+$(document).ready(function() {
+  $('.prev').on('click', function(){
+    var prevImg = $('img.active').prev('.slider-inner img');
+    if(prevImg.length == 0) {
+      prevImg = $('.slider-inner img:last');
+    }
+    $('img.active').removeClass('active');
+    prevImg.addClass('active');
+  });
+  $('.next').on('click', function() {
+    var nextImg = $('img.active').next('.slider-inner img');
+    if(nextImg.length == 0) {
+      nextImg = $('.slider-inner img:first');
+    }
+    $('img.active').removeClass('active');
+    nextImg.addClass('active');
+  });
+});﻿
+</script>
+
+<script> 
+
+  $(document).ready(function(){
+  $("#s").click(function(){
+  $("div").animate({
+    width: 'toggle'
+  });
+  });
+});
+</script> 
+
+
+<script> 
+  function reset() {
+  location.reload();
+}
+</script>
+
+<script>
+function randombgcolor() {
+    var x = Math.floor(Math.random() * 256);
+    var y = Math.floor(Math.random() * 256);
+    var z = Math.floor(Math.random() * 256);
+    var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+    document.body.style.background = bgColor;
+    }
+</script>
+
+</head>
+
+<body>
+    <button onclick="randombgcolor()"> Random Color</button>
+    <button id="s">Show/Hide</button>
+    <button onclick="reset()"> Rest</button>
+
+    <div class="container">
+      <div class="slider-outer">
+        <img src="re/left.png" class="prev">
+        <div class="slider-inner">
+          <img src="re/1.jpg" class="active">
+          <img src="re/2.jpg">
+          <img src="re/3.jpg">
+          <img src="re/4.jpg">
+          <img src="re/5.jpg">
+        </div>
+        <img src="re/right.png" class="next">
+      </div>
+    </div>
+  </body>
+
+</html>
